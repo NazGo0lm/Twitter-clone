@@ -184,7 +184,7 @@ export const getAllPosts = async (req, res) => {
         }
         res.status(200).json(posts);
     } catch (error) {
-        console.log("Error in commentonPost controller: ", error);
+        console.log("Error in getAllPosts controller: ", error);
         res.status(500).json({ error: "Internal server error" });
     }
 }
@@ -243,7 +243,7 @@ export const getFollowingPosts = async (req, res) => {
         res.status(200).json(feedPosts);
 
     } catch (error) {
-        console.log("Error in getLikedPosts controller: ", error);
+        console.log("Error in getFollowingPosts controller: ", error);
         res.status(500).json({ error: "Internal server error" });
     }
 }
@@ -270,7 +270,7 @@ export const getUserPosts = async (req, res) => {
 
     res.status(200).json(posts);
   } catch (error) {
-    console.log("Error in getLikedPosts controller: ", error);
+    console.log("Error in getUserPosts controller: ", error);
     res.status(500).json({ error: "Internal server error" });
   }
 }; 
