@@ -108,7 +108,6 @@ export const getSuggestedUsers = async (req, res) => {
   }
 };
 
-
 export const updateUser = async (req, res) => {
     const { fullName, email, username, currentPassword, newPassword, bio, link } = req.body;
     let { profileImg, coverImg } = req.body;
@@ -116,13 +115,16 @@ export const updateUser = async (req, res) => {
     const userId = req.user._id;
 
     try {
+        // Find the user by their ID
         let user = await User.findById(userId);
         if (!user) return res.status(404).json({ message: "User not found" });
 
+        // Check if both currentPassword and newPassword are provided together
         if ((!newPassword && currentPassword) || (!currentPassword && newPassword)) {
             return res.status(400).json({ error: "Please provide both current password and new password" });
         }
 
+        // Handle password change
         if (currentPassword && newPassword) {
             const isMatch = await bcrypt.compare(currentPassword, user.password);
             if (!isMatch) return res.status(400).json({ error: "Current password is incorrect" });
@@ -137,17 +139,22 @@ export const updateUser = async (req, res) => {
         // Profile Image Upload
         if (profileImg) {
             if (user.profileImg) {
+                // Delete existing profile image from Cloudinary
                 await cloudinary.uploader.destroy(user.profileImg.split("/").pop().split(".")[0]);
             }
+            // Upload new profile image to Cloudinary
             const uploadedResponse = await cloudinary.uploader.upload(profileImg);
             profileImg = uploadedResponse.secure_url;
+            //The secure_url is a property in the response object returned by Cloudinary
         }
 
         // Cover Image Upload
         if (coverImg) {
             if (user.coverImg) {
-                await cloudinary.uploader.destroy(user.coverImg.split("/").pop().split(".")[0]); // Delete image from Cloudinary
+                // Delete existing cover image from Cloudinary
+                await cloudinary.uploader.destroy(user.coverImg.split("/").pop().split(".")[0]);
             }
+            // Upload new cover image to Cloudinary
             const uploadedResponse = await cloudinary.uploader.upload(coverImg);
             coverImg = uploadedResponse.secure_url;
         }
@@ -161,6 +168,7 @@ export const updateUser = async (req, res) => {
         user.profileImg = profileImg || user.profileImg; // Corrected this line
         user.coverImg = coverImg || user.coverImg;
 
+        // Save the updated user
         user = await user.save();
 
         // Remove password from response
@@ -172,7 +180,6 @@ export const updateUser = async (req, res) => {
         res.status(500).json({ error: error.message });
     }
 };
-
 
 
 
