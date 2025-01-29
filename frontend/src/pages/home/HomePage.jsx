@@ -38,8 +38,8 @@ const HomePage = () => {
         {/*  CREATE POST INPUT */}
         <CreatePost />
 
-        {/* POSTS */}
-        <Posts />
+        {/* POSTS  refetch*/}
+        <Posts feedType={feedType}/>
       </div>
     </>
   );
