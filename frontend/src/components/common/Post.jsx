@@ -24,6 +24,7 @@ const Post = ({ post }) => {
   };
 
   const handleLikePost = () => {};
+  
 
   return (
     <>
@@ -36,6 +37,8 @@ const Post = ({ post }) => {
             <img src={postOwner.profileImg || "/avatar-placeholder.png"} />
           </Link>
         </div>
+
+
         <div className="flex flex-col flex-1">
           <div className="flex gap-2 items-center">
             <Link to={`/profile/${postOwner.username}`} className="font-bold">
@@ -57,6 +60,8 @@ const Post = ({ post }) => {
               </span>
             )}
           </div>
+
+
           <div className="flex flex-col gap-3 overflow-hidden">
             <span>{post.text}</span>
             {post.img && (
@@ -67,6 +72,8 @@ const Post = ({ post }) => {
               />
             )}
           </div>
+
+
           <div className="flex justify-between mt-3">
             <div className="flex gap-4 items-center w-2/3 justify-between">
               <div
@@ -82,6 +89,8 @@ const Post = ({ post }) => {
                   {post.comments.length}
                 </span>
               </div>
+
+              
               {/* We're using Modal Component from DaisyUI */}
               <dialog
                 id={`comments_modal${post._id}`}
@@ -95,6 +104,8 @@ const Post = ({ post }) => {
                         No comments yet 🤔 Be the first one 😉
                       </p>
                     )}
+
+
                     {post.comments.map((comment) => (
                       <div key={comment._id} className="flex gap-2 items-start">
                         <div className="avatar">
@@ -120,7 +131,11 @@ const Post = ({ post }) => {
                         </div>
                       </div>
                     ))}
+  
+
                   </div>
+
+
                   <form
                     className="flex gap-2 items-center mt-4 border-t border-gray-600 pt-2"
                     onSubmit={handlePostComment}
@@ -139,17 +154,25 @@ const Post = ({ post }) => {
                       )}
                     </button>
                   </form>
+
+
                 </div>
                 <form method="dialog" className="modal-backdrop">
                   <button className="outline-none">close</button>
                 </form>
+
               </dialog>
+
+
+
               <div className="flex gap-1 items-center group cursor-pointer">
                 <BiRepost className="w-6 h-6  text-slate-500 group-hover:text-green-500" />
                 <span className="text-sm text-slate-500 group-hover:text-green-500">
                   0
                 </span>
               </div>
+
+
               <div
                 className="flex gap-1 items-center group cursor-pointer"
                 onClick={handleLikePost}
@@ -169,7 +192,10 @@ const Post = ({ post }) => {
                   {post.likes.length}
                 </span>
               </div>
+              
             </div>
+
+
             <div className="flex w-1/3 justify-end gap-2 items-center">
               <FaRegBookmark className="w-4 h-4 text-slate-500 cursor-pointer" />
             </div>

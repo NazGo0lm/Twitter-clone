@@ -32,6 +32,7 @@ const NotificationPage = () => {
     alert("All notifications deleted");
   };
 
+
   return (
     <>
       <div className="flex-[4_4_0] border-l border-r border-gray-700 min-h-screen">
@@ -51,6 +52,7 @@ const NotificationPage = () => {
             </ul>
           </div>
         </div>
+
         {isLoading && (
           <div className="flex justify-center h-full items-center">
             <LoadingSpinner size="lg" />
@@ -59,6 +61,8 @@ const NotificationPage = () => {
         {notifications?.length === 0 && (
           <div className="text-center p-4 font-bold">No notifications 🤔</div>
         )}
+
+
         {notifications?.map((notification) => (
           <div className="border-b border-gray-700" key={notification._id}>
             <div className="flex gap-2 p-4">
@@ -91,6 +95,7 @@ const NotificationPage = () => {
             </div>
           </div>
         ))}
+
       </div>
     </>
   );

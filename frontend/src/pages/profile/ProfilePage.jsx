@@ -13,6 +13,8 @@ import { FaLink } from "react-icons/fa";
 import { MdEdit } from "react-icons/md";
 
 const ProfilePage = () => {
+  
+
   const [coverImg, setCoverImg] = useState(null);
   const [profileImg, setProfileImg] = useState(null);
   const [feedType, setFeedType] = useState("posts");
@@ -22,6 +24,9 @@ const ProfilePage = () => {
 
   const isLoading = false;
   const isMyProfile = true;
+
+
+
 
   const user = {
     _id: "1",
@@ -35,6 +40,8 @@ const ProfilePage = () => {
     followers: ["1", "2", "3"],
   };
 
+
+
   const handleImgChange = (e, state) => {
     const file = e.target.files[0];
     if (file) {
@@ -47,6 +54,7 @@ const ProfilePage = () => {
     }
   };
 
+
   return (
     <>
       <div className="flex-[4_4_0]  border-r border-gray-700 min-h-screen ">
@@ -55,6 +63,9 @@ const ProfilePage = () => {
         {!isLoading && !user && (
           <p className="text-center text-lg mt-4">User not found</p>
         )}
+
+
+
         <div className="flex flex-col">
           {!isLoading && user && (
             <>
@@ -69,6 +80,8 @@ const ProfilePage = () => {
                   </span>
                 </div>
               </div>
+
+              
               {/* COVER IMG */}
               <div className="relative group/cover">
                 <img
@@ -78,13 +91,16 @@ const ProfilePage = () => {
                 />
                 {isMyProfile && (
                   <div
-                    className="absolute top-2 right-2 rounded-full p-2 bg-gray-800 bg-opacity-75 cursor-pointer opacity-0 group-hover/cover:opacity-100 transition duration-200"
+                    className="absolute top-2 right-2 rounded-full p-2 bg-gray-800 bg-opacity-75 cursor-pointer opacity-0
+                     group-hover/cover:opacity-100 transition duration-200"
                     onClick={() => coverImgRef.current.click()}
                   >
                     <MdEdit className="w-5 h-5 text-white" />
                   </div>
                 )}
 
+
+                
                 <input
                   type="file"
                   hidden
@@ -99,6 +115,11 @@ const ProfilePage = () => {
                   ref={profileImgRef}
                   onChange={(e) => handleImgChange(e, "profileImg")}
                 />
+
+
+
+
+
                 {/* USER AVATAR */}
                 <div className="avatar absolute -bottom-16 left-4">
                   <div className="w-32 rounded-full relative group/avatar">
@@ -119,7 +140,15 @@ const ProfilePage = () => {
                     </div>
                   </div>
                 </div>
+
+
+
+
               </div>
+
+
+
+
               <div className="flex justify-end px-4 mt-5">
                 {isMyProfile && <EditProfileModal />}
                 {!isMyProfile && (
@@ -140,6 +169,11 @@ const ProfilePage = () => {
                 )}
               </div>
 
+
+
+
+
+
               <div className="flex flex-col gap-4 mt-14 px-4">
                 <div className="flex flex-col">
                   <span className="font-bold text-lg">{user?.fullName}</span>
@@ -148,6 +182,10 @@ const ProfilePage = () => {
                   </span>
                   <span className="text-sm my-1">{user?.bio}</span>
                 </div>
+
+
+
+
 
                 <div className="flex gap-2 flex-wrap">
                   {user?.link && (
@@ -172,6 +210,9 @@ const ProfilePage = () => {
                     </span>
                   </div>
                 </div>
+
+
+
                 <div className="flex gap-2">
                   <div className="flex gap-1 items-center">
                     <span className="font-bold text-xs">
@@ -186,7 +227,11 @@ const ProfilePage = () => {
                     <span className="text-slate-500 text-xs">Followers</span>
                   </div>
                 </div>
+
+
               </div>
+
+
               <div className="flex w-full border-b border-gray-700 mt-4">
                 <div
                   className="flex justify-center flex-1 p-3 hover:bg-secondary transition duration-300 relative cursor-pointer"
@@ -207,10 +252,15 @@ const ProfilePage = () => {
                   )}
                 </div>
               </div>
+
+
+
             </>
           )}
 
           <Posts />
+
+          
         </div>
       </div>
     </>

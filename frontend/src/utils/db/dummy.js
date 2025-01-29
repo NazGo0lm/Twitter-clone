@@ -21,6 +21,7 @@ export const POSTS = [
     ],
     likes: ["6658s891", "6658s892", "6658s893", "6658s894"],
   },
+  
   {
     _id: "2",
     text: "How you guys doing? 😊",

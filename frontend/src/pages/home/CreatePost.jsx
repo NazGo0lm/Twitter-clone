@@ -31,6 +31,17 @@ const CreatePost = () => {
       reader.readAsDataURL(file);
     }
   };
+  /* 
+  Retrieve the selected file from the input.
+
+  Check if a file is selected.
+
+  Create a FileReader object.
+
+  Define the onload event handler to set the image data.
+
+  Read the file as a data URL and trigger the onload event.
+  */
 
   return (
     <div className="flex p-4 items-start gap-4 border-b border-gray-700">
@@ -39,6 +50,7 @@ const CreatePost = () => {
           <img src={data.profileImg || "/avatar-placeholder.png"} />
         </div>
       </div>
+
       <form className="flex flex-col gap-2 w-full" onSubmit={handleSubmit}>
         <textarea
           className="textarea w-full p-0 text-lg resize-none border-none focus:outline-none  border-gray-800"
@@ -68,6 +80,8 @@ const CreatePost = () => {
               className="fill-primary w-6 h-6 cursor-pointer"
               onClick={() => imgRef.current.click()}
             />
+            {/*onClick={() => imgRef.current.click()}: Triggers a click event on the hidden file input (imgRef.current)
+            to open the file picker when the icon is clicked.*/}
             <BsEmojiSmileFill className="fill-primary w-5 h-5 cursor-pointer" />
           </div>
           <input
@@ -75,6 +89,7 @@ const CreatePost = () => {
             type="file"
             hidden
             ref={imgRef}
+            /* Uses imgRef to reference the input element, enabling programmatic access. */
             onChange={handleImgChange}
           />
           <button className="btn btn-primary rounded-full btn-sm text-white px-4">

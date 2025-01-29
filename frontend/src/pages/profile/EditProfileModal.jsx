@@ -15,6 +15,8 @@ const EditProfileModal = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
+
+
   return (
     <>
       <button
@@ -25,6 +27,9 @@ const EditProfileModal = () => {
       >
         Edit profile
       </button>
+
+
+
       <dialog id="edit_profile_modal" className="modal">
         <div className="modal-box border rounded-md border-gray-700 shadow-md">
           <h3 className="font-bold text-lg my-3">Update Profile</h3>
@@ -35,6 +40,8 @@ const EditProfileModal = () => {
               alert("Profile updated successfully");
             }}
           >
+
+
             <div className="flex flex-wrap gap-2">
               <input
                 type="text"
@@ -53,6 +60,9 @@ const EditProfileModal = () => {
                 onChange={handleInputChange}
               />
             </div>
+
+
+
             <div className="flex flex-wrap gap-2">
               <input
                 type="email"
@@ -70,6 +80,10 @@ const EditProfileModal = () => {
                 onChange={handleInputChange}
               />
             </div>
+
+
+
+
             <div className="flex flex-wrap gap-2">
               <input
                 type="password"
@@ -88,6 +102,9 @@ const EditProfileModal = () => {
                 onChange={handleInputChange}
               />
             </div>
+
+
+
             <input
               type="text"
               placeholder="Link"
@@ -99,11 +116,16 @@ const EditProfileModal = () => {
             <button className="btn btn-primary rounded-full btn-sm text-white">
               Update
             </button>
+
+
+
           </form>
         </div>
         <form method="dialog" className="modal-backdrop">
           <button className="outline-none">close</button>
         </form>
+
+
       </dialog>
     </>
   );

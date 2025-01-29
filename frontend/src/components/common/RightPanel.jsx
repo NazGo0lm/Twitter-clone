@@ -19,6 +19,8 @@ const RightPanel = () => {
               <RightPanelSkeleton />
             </>
           )}
+
+          
           {!isLoading &&
             USERS_FOR_RIGHT_PANEL?.map((user) => (
               <Link
@@ -51,6 +53,8 @@ const RightPanel = () => {
                 </div>
               </Link>
             ))}
+
+
         </div>
       </div>
     </div>
