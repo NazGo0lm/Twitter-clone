@@ -17,7 +17,7 @@ function App() {
 
   
 
-  //
+  // 
   const { data: authUser, isLoading } = useQuery({
     //we use queryKey to gove a unique name to our query and refer to it later
     queryKey: ['authUser'],
