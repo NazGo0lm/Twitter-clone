@@ -1,5 +1,5 @@
 //console.log("server is running ss");
-
+import path from 'path';
 import express from "express";
 import dotenv from "dotenv";
 import cookieParser from "cookie-parser";
@@ -23,6 +23,7 @@ cloudinary.config({
 
 const app = express();
 const PORT = process.env.PORT || 5000;
+const __dirname = path.resolve();
 
 app.use(express.json({limit:"5mb"})); //to parse req.body - limit shoudn't be high to prevent DOS
 app.use(express.urlencoded({ extended: true })); //to parse data(urlcoded)
@@ -36,6 +37,14 @@ app.use("/api/auth", authRoutes);
 app.use("/api/users", userRoutes);
 app.use("/api/posts", postRoutes);
 app.use("/api/notifications", notificationRoutes);
+
+if (process.env.NODE_ENV === "production") {
+    app.use(express.static(path.join(__dirname, "frontend/dist")));
+
+    app.get("*", (req,res) => {
+        res.sendFile(path.resolve(__dirname, "frontend", "dist", "index.html"));        
+    })
+}
 
 
 app.listen(PORT, () => {
