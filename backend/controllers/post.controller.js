@@ -99,6 +99,13 @@ export const commentOnPost = async (req, res) => {
         //Send Response:
         res.status(200).json(post);
 
+        /**
+            //coontinue here
+            const updatedLikes = post.likes.filter((id)=>id.toString() !== userId.toString())
+            res.status(200).json(updatedLikes);
+          
+         */
+
     } catch (error) {
         console.log("Error in commentonPost controller: ", error);
         res.status(500).json({ error: "Internal server error" });
@@ -107,7 +114,7 @@ export const commentOnPost = async (req, res) => {
 
 
 
-//analyse from here
+//analyse from here 
 
 export const likeUnlikePost = async (req, res) => {
     try {
@@ -134,7 +141,9 @@ export const likeUnlikePost = async (req, res) => {
             await Post.updateOne({ _id: postId }, { $pull: { likes: userId } });
             await User.updateOne({ _id: userId }, { $pull: { likedPosts: postId } });
             console.log("Post unliked");
-            res.status(200).json({ message: "Post unliked successfully" });
+            //coontinue here
+            const updatedLikes = post.likes.filter((id)=>id.toString() !== userId.toString())
+            res.status(200).json(updatedLikes);
 
         } else {
             // Like Post (if not liked yet)
@@ -159,7 +168,8 @@ export const likeUnlikePost = async (req, res) => {
             await notification.save();
             console.log("Notification created");
 
-            res.status(200).json({ message: "Post liked successfully" });
+            const updatedLikes = post.likes;
+            res.status(200).json(updatedLikes);
         }
     } catch (error) {
         console.log("Error in likeUnlikePost controller:", error);
